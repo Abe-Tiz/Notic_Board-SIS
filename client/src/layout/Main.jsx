@@ -1,10 +1,16 @@
 import React from 'react'
-import App from '../App';
-
+import Navbar from './../components/Navbar';
+import Footer from '../components/Footer';
+import {Outlet} from 'react-router-dom'
+ 
 const Main = () => {
   return (
-    <div className="border-2">
-      <button class="btn btn-primary">Button</button>
+    <div className="container p-5 px-10">
+      <Navbar />
+      <div className="container min-h-screen ">
+        <Outlet />
+      </div>
+      <Footer />
     </div>
   );
 }
