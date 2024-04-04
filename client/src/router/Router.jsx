@@ -5,7 +5,11 @@ import Hero from "../components/Hero";
 import Signup from './../pages/auth/Signup';
 import Login from "../pages/auth/Login";
 import Admin from "../layout/Admin";
-
+import News from "../pages/news/News";
+import Feature from "../pages/features/Feature";
+import Request from "../pages/Request/Request";
+import Display from "../components/Display";
+ 
 
 const router = createBrowserRouter([
   {
@@ -24,6 +28,18 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {
+        path: "/news",
+        element: <News />,
+      },
+      {
+        path: "/feature",
+        element: <Feature />,
+      },
+      {
+        path: "/request",
+        element: <Request />,
+      },
     ],
   },
   {
@@ -37,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "display-user",
+        element: <Display />,
       },
     ],
   },

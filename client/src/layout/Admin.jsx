@@ -39,7 +39,8 @@ const Admin = () => {
            console.log(data.data, "user logged in");
            setState((prev) => ({
              ...prev,
-             name: data.data.name,
+             fname: data.data.fname,
+             lname: data.data.lname,
              image: data.data.image,
              role: data.data.role,
              isLoggedin: true,

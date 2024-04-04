@@ -5,7 +5,7 @@ import {Outlet} from 'react-router-dom'
  
 const Main = () => {
   return (
-    <div className="bg-indigo container p-5 px-10 ">
+    <div className="bg-indigo container p-5 ">
       <Navbar />
       <div className="container min-h-screen">
         <Outlet />

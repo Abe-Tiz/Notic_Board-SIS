@@ -6,7 +6,7 @@ const CustomSidebar = ({ collapsed, fname,lname, image, role }) => {
   return (
     <div
       className={`bg-purple   h-screen fixed  overflow-y-hidden text-white transition-all duration-300 ${
-        collapsed ? "w-28" : "w-60"
+        collapsed ? "w-28" : "w-60 ml-0"
       }`}
     >
       <div className="flex flex-col h-full mt-0">
@@ -135,58 +135,85 @@ const CustomSidebar = ({ collapsed, fname,lname, image, role }) => {
               src={image}
               alt="user photo"
             /> */}
-              <span className="text-lg font-semibold ml-10">{fname} {" "} { lname}</span>
-            <span className="text-lg font-semibold ml-10 text-pink-500">
+            <div className="avatar">
+              <div className="w-24 rounded-full  mb-2 ml-10 mt-5 ">
+                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              </div>
+            </div>
+
+            <span className="text-lg text-white font-serif font-light ml-10">
+              {fname} {lname}
+            </span>
+            {/* <span className="text-lg font-semibold ml-10 text-pink-500">
+              {fname}
+            </span> */}
+            <span className="text-sm font-thin ml-10 text-green-400">
               {role}
             </span>
 
             {/* btn */}
-            <div className="w-64- mt-4 flex flex-col justify-center items-center">
-              <Link
-                to="/admin"
-                className=" flex gap-2 w-36 text-white p-2 hover:bg-gray-800 rounded"
-                // onClick={handleReport}
-                data-tooltip-id="my-dashboard"
-                data-tooltip-content="Dashboard"
-              >
-                <DynamicIcon
-                  library="md"
-                  iconName="MdSpaceDashboard"
-                  className="text-2xl"
-                />
-                <span className="ml-2">Dahboard</span>
-              </Link>
-              <Link
-                to="/admin/signup"
-                className=" flex gap-2 w-36 text-white p-2 hover:bg-gray-800 rounded"
-                // onClick={handleAddDonorClick}
+            <div className="w-64- mt-4 flex flex-col justify-between h-full items-center">
+              <div>
+                <Link
+                  to="/admin"
+                  className=" flex gap-2 w-36 text-white p-2 hover:bg-gray-800 rounded"
+                  // onClick={handleReport}
+                  data-tooltip-id="my-dashboard"
+                  data-tooltip-content="Dashboard"
+                >
+                  <DynamicIcon
+                    library="md"
+                    iconName="MdSpaceDashboard"
+                    className="text-2xl"
+                  />
+                  <span className="ml-2">Dahboard</span>
+                </Link>
+                <Link
+                  to="/admin/signup"
+                  className=" flex gap-2 w-36 text-white p-2 hover:bg-gray-800 rounded"
+                  // onClick={handleAddDonorClick}
 
-                data-tooltip-id="add-donor"
-                data-tooltip-content="Add Donor"
-              >
-                <DynamicIcon
-                  library="md"
-                  iconName="MdOutlineGroupAdd"
-                  className="text-2xl"
-                />
-                <span className="ml-2">Add User</span>
-              </Link>
+                  data-tooltip-id="add-donor"
+                  data-tooltip-content="Add Donor"
+                >
+                  <DynamicIcon
+                    library="md"
+                    iconName="MdOutlineGroupAdd"
+                    className="text-2xl"
+                  />
+                  <span className="ml-2">Add User</span>
+                </Link>
+                <Link
+                  to="/admin/display-user"
+                  className="flex gap-2 w-36 text-white p-2 mt-2 hover:bg-gray-800 rounded"
+                  // onClick={handleDisplayDonorClick}
+                  data-tooltip-id="donor-list"
+                  data-tooltip-content="Donor List"
+                >
+                  {/* <PiUserListBold className="text-2xl" /> */}
+                  <DynamicIcon
+                    library="pi"
+                    iconName="PiUserListBold"
+                    className="text-2xl"
+                  />
+                  <span className="ml-2">User List</span>
+                </Link>
+              </div>
               <Link
                 to="/admin/login"
-                className="flex gap-2 w-36 text-white p-2 mt-2 hover:bg-gray-800 rounded"
+                className="flex gap-2 w-36 text-white p-2 mb-10 hover:bg-gray-800 rounded"
                 // onClick={handleDisplayDonorClick}
                 data-tooltip-id="donor-list"
                 data-tooltip-content="Donor List"
               >
                 {/* <PiUserListBold className="text-2xl" /> */}
                 <DynamicIcon
-                  library="pi"
-                  iconName="PiUserListBold"
+                  library="ai"
+                  iconName="AiOutlineLogin"
                   className="text-2xl"
                 />
                 <span className="ml-2">Login</span>
               </Link>
-             
             </div>
           </>
         )}

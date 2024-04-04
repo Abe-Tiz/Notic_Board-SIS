@@ -11,7 +11,7 @@ const useSearch = (searchType) => {
       let url;
       switch (searchType) {
         case "user":
-          url = "http://localhost:4000/user/search";
+          url = "http://localhost:5000/user/search";
           break;
         // case "user":
         //   url = "http://localhost:4000/user/search";
@@ -20,9 +20,9 @@ const useSearch = (searchType) => {
       }
 
       const response = await axios.post(url, {
-        name: searchTerm,
+        fname: searchTerm,
       });
-
+      console.log(response.data);
       setData(response.data);
       setError(null);
     } catch (err) {

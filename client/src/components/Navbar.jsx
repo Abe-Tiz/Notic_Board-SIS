@@ -1,17 +1,19 @@
 import React from 'react'
+import Button from './Button';
+import LinkButton from './LinkButton';
 
 const Navbar = () => {
 
   const navList = (
       <>
             <li>
-              <a className='text-white'> News</a >
+              <a href='/news' className='text-white'> News</a >
             </li>
             <li>
-              <a className='text-white'> Features</a>
+              <a  href='/feature' className='text-white'> Features</a>
             </li>
             <li>
-              <a className='text-white'> request</a>
+              <a href='/request' className='text-white'> request</a>
             </li>
           </>
   )
@@ -40,18 +42,16 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52"
             >
-             {navList }
+              {navList}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl text-white">daisyUI</a>
+          <a href='/' className="btn btn-ghost text-xl text-white">daisyUI</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 bg-indigo">
-           { navList }
-          </ul>
+          <ul className="menu menu-horizontal px-1 bg-indigo">{navList}</ul>
         </div>
         <div className="navbar-end ">
-          <a href='/login' className="btn bg-pink hover:bg-purple text-black ">Login</a>
+          <LinkButton />
         </div>
       </div>
     </>

@@ -22,12 +22,10 @@ const HeaderComponent = ({ state, toggleSidebar, newDonorCount }) => {
     setDropdownOpen(!isDropdownOpen);
   };
 
-  //  console.log("search term", searchTerm);
-  //  console.log("donor", donor);
   return (
     <div
-      className={`bg-indigo p-2 flex justify-between text-center items-center fixed z-50  md:pr-5 pr-10  ${
-        state.collapsed ? ` w-11/12 ml-8` : `w-4/5`
+      className={`bg-purple p-2  flex md:justify-between md:gap-5 justify-around text-center items-center fixed z-50  md:pr-5 pr-10  ${
+        state.collapsed ? ` w-11/12 ml-8` : `w-4/5 ml-0`
       }`}
     >
       <div className="flex items-center">
@@ -72,9 +70,8 @@ const HeaderComponent = ({ state, toggleSidebar, newDonorCount }) => {
                       d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                     />
                   </svg>
-                  
-                    <span className="badge badge-secondary">0</span>
-                 
+
+                  <span className="badge badge-secondary">0</span>
                 </Badge>
               </div>
             </div>
@@ -93,10 +90,11 @@ const HeaderComponent = ({ state, toggleSidebar, newDonorCount }) => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="btn btn-ghost btn-circle avatar mr-5"
             >
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src={state.image} />
+                {/* <img alt="Tailwind CSS Navbar component" src={state.image} /> */}
+                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
               </div>
             </div>
             <ul

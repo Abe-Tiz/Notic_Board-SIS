@@ -1,19 +1,22 @@
 // TableHeader.js
 import React from "react";
 
-const TableHeader = ({ name, city, mobile, status, action }) => {
+const TableHeader = ({ fname, lname, role, email,status, action }) => {
 
   return (
     <thead className="bg-blue-300 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" className="px-6 py-3">
-          {name}
+          {fname}
         </th>
         <th scope="col" className="px-6 py-3">
-          {city}
+          {lname}
         </th>
         <th scope="col" className="px-6 py-3">
-          {mobile}
+          {role}
+        </th>
+        <th scope="col" className="px-6 py-3">
+          {email}
         </th>
         <th scope="col" className="px-6 py-3">
           {status}

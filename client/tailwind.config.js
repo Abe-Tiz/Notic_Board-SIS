@@ -6,8 +6,10 @@ export default {
       colors: {
         black: "#222831",
         indigo: "#393E46",
-        purple: "#00ADB5",
-        pink: "#00FFF5",
+        // white: "#00ADB5",
+        purple: "#002B5B",
+        pink: "#675D50",
+        primary: "#65B741",
       },
     },
   },
