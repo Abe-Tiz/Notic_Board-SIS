@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Badge } from "antd";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TfiMenuAlt } from "react-icons/tfi";
-import { useNavigate } from "react-router-dom";
-import useSearch from "../Hooks/useSearch";
+// import { useNavigate } from "react-router-dom";
+// import useSearch from "../Hooks/useSearch";
  
-const HeaderComponent = ({ state, toggleSidebar, newDonorCount }) => {
+const HeaderComponent = ({ state, toggleSidebar }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 //   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { searchTerm, handleChange, donor, error, getDonorByName } = useSearch('user');
+  // const navigate = useNavigate();
+  // const { searchTerm, handleChange, donor, error, getDonorByName } = useSearch('user');
 
   //! handle Logout
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+  // const handleLogout = () => {
+  //   localStorage.clear();
+  //   navigate("/");
+  // };
 
 
   const toggleDropdown = () => {
@@ -102,10 +102,10 @@ const HeaderComponent = ({ state, toggleSidebar, newDonorCount }) => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-lg text-black"
             >
               <li>
-                <a> Setting</a>
+                <a href="#"> Setting</a>
               </li>
               <li>
-                <a onClick={handleLogout}>Logout</a>
+                <a href="#">Profile</a>
               </li>
             </ul>
           </div>
