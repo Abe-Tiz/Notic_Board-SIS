@@ -32,7 +32,7 @@ const TableBody = ({
               >
                 <div className="w-10 rounded-full">
                   {/* <img alt="Tailwind CSS Navbar component" src={state.image} /> */}
-                  <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  <img src={res.image} />
                 </div>
               </div>
               <div className="text-base font-semibold">{res.fname}</div>

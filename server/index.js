@@ -9,6 +9,7 @@ const app = express();
 const port = process.env.PORT;
 
 const userRoute = require('./route/UserRoute')
+const newsRoute = require("./route/NewsRoute");
 
 app.use(cors());
 app.use(express.json());
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/user',userRoute)
+app.use('/news',newsRoute)
 
 app.listen(port, () => {
     console.log(`server is running on port ${port}`);

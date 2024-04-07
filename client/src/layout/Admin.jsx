@@ -77,6 +77,7 @@ const Admin = () => {
           fname={state.fname}
           lname={state.lname}
           role={state.role}
+          image={state.image}
           handleLogout={handleLogout}
         />
 
@@ -90,6 +91,7 @@ const Admin = () => {
             state={state}
             toggleSidebar={toggleSidebar}
             // newDonorCount={newDonorCount}
+            image={state.image}
           />
 
           {/* content section  */}

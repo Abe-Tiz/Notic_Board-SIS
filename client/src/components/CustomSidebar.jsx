@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import DynamicIcon from "./DynamicIcon";
 
-const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role }) => {
+const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role,image }) => {
   return (
     <div
       className={`bg-purple   h-screen fixed  overflow-x-hidden text-white transition-all duration-300 z-50 ${
@@ -48,6 +48,18 @@ const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role }) => {
                 className="text-2xl"
               />
             </Link>
+            <Link
+              className="text-white p-2 mt-2 hover:bg-gray-800 rounded"
+              to="/admin/post-news"
+              data-tooltip-id="user-list"
+              data-tooltip-content="User List"
+            >
+              <DynamicIcon
+                library="md"
+                iconName="MdOutlineNewspaper"
+                className="text-2xl"
+              />
+            </Link>
           </div>
         ) : (
           <>
@@ -55,7 +67,7 @@ const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role }) => {
             <div className="flex flex-col ">
               <div className="avatar">
                 <div className="w-24 rounded-full  mb-2 ml-10 mt-5 ">
-                  <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  <img src={image} />
                 </div>
               </div>
 
@@ -111,6 +123,21 @@ const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role }) => {
                     className="text-2xl"
                   />
                   <span className="ml-2">User List</span>
+                </Link>
+                <Link
+                  to="/admin/post-news"
+                  className="flex gap-2 w-36 text-white p-2 mt-2 hover:bg-gray-800 rounded"
+                  // onClick={handleDisplayDonorClick}
+                  data-tooltip-id="donor-list"
+                  data-tooltip-content="Donor List"
+                >
+                  {/* <PiUserListBold className="text-2xl" /> */}
+                  <DynamicIcon
+                    library="md"
+                    iconName="MdOutlineNewspaper"
+                    className="text-2xl"
+                  />
+                  <span className="ml-2">Create Post</span>
                 </Link>
               </div>
             </div>

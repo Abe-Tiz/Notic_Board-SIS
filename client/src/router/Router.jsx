@@ -9,6 +9,7 @@ import News from "../pages/news/News";
 import Feature from "../pages/features/Feature";
 import Request from "../pages/Request/Request";
 import Display from "../components/Display";
+import CreatePost from "../pages/dashboard/posts/CreatePost";
  
 
 const router = createBrowserRouter([
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "display-user",
         element: <Display />,
+      },
+      {
+        path: "post-news",
+        element: <CreatePost />,
       },
     ],
   },

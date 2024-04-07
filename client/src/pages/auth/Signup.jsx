@@ -31,7 +31,7 @@ const Signup = () => {
 
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
-      data.append("image", pics);
+      data.append("file", pics);
       data.append("upload_preset", "mern-chat-app");
       data.append("cloud_name", "dxa20yutc");
 
@@ -44,8 +44,8 @@ const Signup = () => {
           ...prevValue,
           image: response.data.url.toString(),
         }));
-        setImage(response.data.url.toString());
-        console.log(response.data.url.toString());
+      //  console.log("image: ",response.data.url.toString())
+        // console.log(response.data.url.toString());
       } catch (error) {
         console.log(error);
       }
@@ -61,7 +61,7 @@ const Signup = () => {
     }
   };
  
-
+//  console.log("input data:",inputData);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -69,7 +69,7 @@ const Signup = () => {
         "http://localhost:5000/user/register",
         inputData
       );
-      console.log(response.data);
+      // console.log("response data:",response.data);
 
       Swal.fire({
         position: "top",
@@ -88,7 +88,7 @@ const Signup = () => {
         image: "",
       });
     } catch (error) {
-      console.error("Error occurred:", error.response.data.message);
+      // console.error("Error occurred:", error.response.data.message);
       Swal.fire({
         position: "top",
         icon: "error",
@@ -222,13 +222,12 @@ const Signup = () => {
               Image
             </label>
             <input
-              name="image"
+              name="file"
               type="file"
               accept="image/*"
-              // onChange={(e) => uploadImage(e.target.files[0])}
+              onChange={(e) => uploadImage(e.target.files[0])}
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               autoComplete="off"
-              
             />
           </div>
         </div>

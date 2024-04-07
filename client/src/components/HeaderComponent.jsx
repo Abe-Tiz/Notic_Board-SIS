@@ -5,7 +5,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 // import { useNavigate } from "react-router-dom";
 // import useSearch from "../Hooks/useSearch";
  
-const HeaderComponent = ({ state, toggleSidebar }) => {
+const HeaderComponent = ({ state, toggleSidebar,image }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 //   const { t } = useTranslation();
   // const navigate = useNavigate();
@@ -94,7 +94,7 @@ const HeaderComponent = ({ state, toggleSidebar }) => {
             >
               <div className="w-10 rounded-full">
                 {/* <img alt="Tailwind CSS Navbar component" src={state.image} /> */}
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={image} />
               </div>
             </div>
             <ul

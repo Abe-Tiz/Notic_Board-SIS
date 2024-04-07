@@ -17,7 +17,7 @@ const Display = () => {
           const userdata = response.data;
         
           if (userdata && userdata.length > 0) {
-            console.log(userdata);
+            // console.log(userdata);
             setLoading(true);
             setDatas(userdata);
           } else {
