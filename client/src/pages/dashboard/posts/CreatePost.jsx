@@ -7,6 +7,7 @@ import Button from "../../../components/Button";
 const CreatePost = () => {
   const [inputData, setInputData] = useState({
     title: "",
+    subTitle: "",
     content: "",
     image: "",
   });
@@ -120,9 +121,27 @@ const CreatePost = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="grid-first-name"
               type="text"
-              placeholder="Enter First Name"
+              placeholder="Enter Title"
               onChange={handleChange}
               name="title"
+            />
+            {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
+          </div>
+          {/* subtitle */}
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className=" text-white block uppercase tracking-wide text-xs font-bold mb-2"
+              for="grid-first-name"
+            >
+              sub Title:
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-first-name"
+              type="text"
+              placeholder="Enter Sub Title"
+              onChange={handleChange}
+              name="subTitle"
             />
             {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
           </div>
@@ -159,8 +178,8 @@ const CreatePost = () => {
               id="grid-password"
               placeholder="Enter your Contents Here..."
               onChange={handleChange}
-                          name="content"
-                          rows={4}
+              name="content"
+              rows={4}
             />
           </div>
         </div>

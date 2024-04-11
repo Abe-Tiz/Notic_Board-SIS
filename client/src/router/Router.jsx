@@ -10,6 +10,7 @@ import Feature from "../pages/features/Feature";
 import Request from "../pages/Request/Request";
 import Display from "../components/Display";
 import CreatePost from "../pages/dashboard/posts/CreatePost";
+import ListPost from "../pages/dashboard/posts/ListPost";
  
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/request",
         element: <Request />,
+      },
+      {
+        path: "list-news",
+        element: <ListPost />,
       },
     ],
   },

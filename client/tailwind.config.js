@@ -10,6 +10,7 @@ export default {
         purple: "#002B5B",
         pink: "#675D50",
         primary: "#65B741",
+        secondary: "#071952"
       },
     },
   },

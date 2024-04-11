@@ -5,9 +5,9 @@ import {Outlet} from 'react-router-dom'
  
 const Main = () => {
   return (
-    <div className="bg-indigo container p-5 ">
+    <div className="bg-base-200 container p-5 ">
       <Navbar />
-      <div className="container min-h-screen">
+      <div className="p-16 container min-h-screen">
         <Outlet />
       </div>
       <Footer />

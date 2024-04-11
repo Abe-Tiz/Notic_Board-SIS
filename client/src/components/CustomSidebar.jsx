@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import DynamicIcon from "./DynamicIcon";
+import LinkSid from "./LinkSid";
 
 const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role,image }) => {
   return (
@@ -24,6 +25,7 @@ const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role,image }) =>
                 className="text-2xl"
               />
             </Link>
+
             <Link
               className="text-white p-2 mt-2 hover:bg-gray-800 rounded"
               to="/admin"
@@ -60,6 +62,18 @@ const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role,image }) =>
                 className="text-2xl"
               />
             </Link>
+            <Link
+              className="text-white p-2 mt-2 hover:bg-gray-800 rounded"
+              to="/admin/list-news"
+              data-tooltip-id="post-list"
+              data-tooltip-content="Post List"
+            >
+              <DynamicIcon
+                library="md"
+                iconName="MdOutlineNewspaper"
+                className="text-2xl"
+              />
+            </Link>
           </div>
         ) : (
           <>
@@ -82,63 +96,64 @@ const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role,image }) =>
             {/* btn */}
             <div className="w-64- mt-4 flex flex-col justify-between h-full items-center">
               <div>
-                <Link
-                  to="/admin"
-                  className=" flex gap-2 w-36 text-white p-2 hover:bg-gray-800 rounded"
-                  // onClick={handleReport}
-                  data-tooltip-id="my-dashboard"
-                  data-tooltip-content="Dashboard"
-                >
-                  <DynamicIcon
-                    library="md"
-                    iconName="MdSpaceDashboard"
-                    className="text-2xl"
-                  />
-                  <span className="ml-2">Dahboard</span>
-                </Link>
-                <Link
-                  to="/admin"
-                  className=" flex gap-2 w-36 text-white p-2 hover:bg-gray-800 rounded"
-                  data-tooltip-id="add-donor"
-                  data-tooltip-content="Add Donor"
-                >
-                  <DynamicIcon
-                    library="md"
-                    iconName="MdOutlineGroupAdd"
-                    className="text-2xl"
-                  />
-                  <span className="ml-2">Add User</span>
-                </Link>
-                <Link
-                  to="/admin/display-user"
-                  className="flex gap-2 w-36 text-white p-2 mt-2 hover:bg-gray-800 rounded"
-                  // onClick={handleDisplayDonorClick}
-                  data-tooltip-id="donor-list"
-                  data-tooltip-content="Donor List"
-                >
-                  {/* <PiUserListBold className="text-2xl" /> */}
-                  <DynamicIcon
-                    library="pi"
-                    iconName="PiUserListBold"
-                    className="text-2xl"
-                  />
-                  <span className="ml-2">User List</span>
-                </Link>
-                <Link
-                  to="/admin/post-news"
-                  className="flex gap-2 w-36 text-white p-2 mt-2 hover:bg-gray-800 rounded"
-                  // onClick={handleDisplayDonorClick}
-                  data-tooltip-id="donor-list"
-                  data-tooltip-content="Donor List"
-                >
-                  {/* <PiUserListBold className="text-2xl" /> */}
-                  <DynamicIcon
-                    library="md"
-                    iconName="MdOutlineNewspaper"
-                    className="text-2xl"
-                  />
-                  <span className="ml-2">Create Post</span>
-                </Link>
+                <LinkSid
+                  title="Dahboard"
+                  icon={
+                    <DynamicIcon
+                      library="md"
+                      iconName="MdSpaceDashboard"
+                      className="text-2xl"
+                    />
+                  }
+                  path="/admin"
+                />
+
+                <LinkSid
+                  title="Add User"
+                  icon={
+                    <DynamicIcon
+                      library="md"
+                      iconName="MdOutlineGroupAdd"
+                      className="text-2xl"
+                    />
+                  }
+                  path="/admin"
+                />
+
+                <LinkSid
+                  title="User List"
+                  icon={
+                    <DynamicIcon
+                      library="pi"
+                      iconName="PiUserListBold"
+                      className="text-2xl"
+                    />
+                  }
+                  path="/admin/display-user"
+                />
+
+                <LinkSid
+                  title="Create Post"
+                  icon={
+                    <DynamicIcon
+                      library="md"
+                      iconName="MdOutlineNewspaper"
+                      className="text-2xl"
+                    />
+                  }
+                  path="/admin/post-news"
+                />
+                <LinkSid
+                  title="Post List"
+                  icon={
+                    <DynamicIcon
+                      library="md"
+                      iconName="MdOutlineNewspaper"
+                      className="text-2xl"
+                    />
+                  }
+                  path="/admin/list-news"
+                />
               </div>
             </div>
           </>

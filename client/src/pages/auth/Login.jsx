@@ -23,18 +23,23 @@ const Login = () => {
       );
      
       const data = response.data;
-       console.log(data.token);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("loggedIn", true);
-     Swal.fire(response.data.message);
-
-      navigate('/admin')
+      console.log(data.user);
+      if (data.user.role === "coordinator") {
+        localStorage.setItem("admin", data.token);
+        localStorage.setItem("loggedIn", true);
+        Swal.fire(response.data.message);
+        navigate("/admin");
+      }
+      //  localStorage.setItem("token", data.token);
+      //  localStorage.setItem("loggedIn", true);
+      //  Swal.fire(response.data.message);
+      //  navigate("/admin");
     } catch (error) {
       console.error("Error occured:", error.response.data.message);
       Swal.fire({
         position: "top",
-        icon: "success",
-        title: error.response.data.message,
+        icon: "error",
+        title: "some thing went wrong",
         showConfirmButton: true,
         timer: 5000,
       });
@@ -49,6 +54,8 @@ const Login = () => {
       [name]: value,
     }));
   };
+
+  
   return (
     <>
       <div className="flex justify-center items-center p-10">

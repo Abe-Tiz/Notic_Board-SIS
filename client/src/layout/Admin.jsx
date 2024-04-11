@@ -31,7 +31,7 @@ const Admin = () => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("admin"),
       }),
     })
       .then((res) => res.json())

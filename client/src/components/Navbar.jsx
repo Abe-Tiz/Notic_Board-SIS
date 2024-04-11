@@ -1,25 +1,35 @@
 import React from 'react'
 import Button from './Button';
 import LinkButton from './LinkButton';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
   const navList = (
-      <>
-            <li>
-              <a href='/news' className='text-white'> News</a >
-            </li>
-            <li>
-              <a  href='/feature' className='text-white'> Features</a>
-            </li>
-            <li>
-              <a href='/request' className='text-white'> request</a>
-            </li>
-          </>
-  )
+    <>
+      <li>
+        <Link to="/list-news" className="text-white">
+          {" "}
+          News
+        </Link>
+      </li>
+      <li>
+        <Link to="/feature" className="text-white">
+          {" "}
+          Features
+        </Link>
+      </li>
+      <li>
+        <Link to="/request" className="text-white">
+          {" "}
+          request
+        </Link>
+      </li>
+    </>
+  );
   return (
     <>
-      <div className="navbar bg-indigo">
+      <div className="navbar bg-purple">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -48,7 +58,7 @@ const Navbar = () => {
           <a href='/' className="btn btn-ghost text-xl text-white">daisyUI</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 bg-indigo">{navList}</ul>
+          <ul className="menu menu-horizontal px-1 bg-purple">{navList}</ul>
         </div>
         <div className="navbar-end ">
           <LinkButton />
