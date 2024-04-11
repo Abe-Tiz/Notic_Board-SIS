@@ -52,6 +52,7 @@ const Admin = () => {
         }
       });
   };
+  
 
   useEffect(() => {
     getLoggedInUser();

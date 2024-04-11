@@ -10,6 +10,7 @@ const CommentBox = ({ newsId, userId, countMessage }) => {
     setShowInput(true);
   };
 
+  
   const handleCommentChange = (e) => {
     setCommentContent(e.target.value);
   };

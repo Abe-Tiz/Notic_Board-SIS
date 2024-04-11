@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from './Button';
 import LinkButton from './LinkButton';
 import { Link } from 'react-router-dom';
+import useLoggedInUser from '../Hooks/useLoggedInUser';
 
 const Navbar = () => {
-
+  const { user, getLoggedInUser } = useLoggedInUser();
+  useEffect(() => {
+    getLoggedInUser();
+  },[])
   const navList = (
     <>
       <li>
@@ -55,13 +59,15 @@ const Navbar = () => {
               {navList}
             </ul>
           </div>
-          <a href='/' className="btn btn-ghost text-xl text-white">daisyUI</a>
+          <a href="/" className="btn btn-ghost text-xl text-white">
+            daisyUI
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 bg-purple">{navList}</ul>
         </div>
         <div className="navbar-end ">
-          <LinkButton />
+          <LinkButton user={user} />
         </div>
       </div>
     </>

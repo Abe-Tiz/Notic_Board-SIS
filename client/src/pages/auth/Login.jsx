@@ -9,6 +9,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  
 
   const navigate = useNavigate()
 
@@ -29,11 +30,13 @@ const Login = () => {
         localStorage.setItem("loggedIn", true);
         Swal.fire(response.data.message);
         navigate("/admin");
+      } else {
+         localStorage.setItem("users", data.token);
+         localStorage.setItem("loggedIn", true);
+         Swal.fire(response.data.message);
+         navigate("/list-news");
       }
-      //  localStorage.setItem("token", data.token);
-      //  localStorage.setItem("loggedIn", true);
-      //  Swal.fire(response.data.message);
-      //  navigate("/admin");
+      
     } catch (error) {
       console.error("Error occured:", error.response.data.message);
       Swal.fire({

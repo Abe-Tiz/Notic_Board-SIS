@@ -10,22 +10,11 @@ const ListPost = () => {
   const [countLike, setCountLike] = useState(0);
   const [countComment, setCountComment] = useState(0);
 
-  const { user, getLoggedInUser } = useLoggedInUser();
-  
+  const { user, getLoggedInUser } = useLoggedInUser('ad');
   const { posts, error, loading } = useFetchPosts();
-  // get posts
-  // const fetchPosts = async () => {
-  //   try {
-  //     const response = await axios.get("http://localhost:5000/news/");
-  //     const data = response.data;
-  //     setPosts(data);
-  //   } catch (error) {
-  //     console.log("Error", error);
-  //   }
-  // };
+  
 
   useEffect(() => {
-    // fetchPosts();
     getLoggedInUser();
   }, []);
 

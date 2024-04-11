@@ -10,6 +10,8 @@ const Card = ({
   key,
   post,
 }) => {
+
+  // console.log(`posted news: ${post.content}`)
   return (
     <>
       <div key={key} className="card bg-black text-white shadow-xl">
@@ -36,7 +38,11 @@ const Card = ({
               {countLike === 0 ? null : countLike}
             </div>
 
-            <CommentBox countMessage={post.message.length} newsId={post._id} userId={userId} />
+            <CommentBox
+              countMessage={post.message.length}
+              newsId={post._id}
+              userId={userId}
+            />
           </div>
         </div>
       </div>
