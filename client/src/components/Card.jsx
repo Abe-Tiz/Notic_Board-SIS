@@ -1,11 +1,12 @@
 
+import CommentBox from './CommentBox';
 import DynamicIcon from './DynamicIcon';
 
 const Card = ({
   handleLiked,
   countLike,
   handleCommente,
-  countComment,
+  userId,
   key,
   post,
 }) => {
@@ -27,7 +28,6 @@ const Card = ({
               onClick={handleLiked}
               className="badge bg-yellow-600 p-5 text-white cursor-pointer"
             >
-              
               <DynamicIcon
                 library="ai"
                 iconName="AiFillLike"
@@ -36,12 +36,13 @@ const Card = ({
               {countLike === 0 ? null : countLike}
             </div>
 
-            <div
-              onClick={handleCommente}
+            <CommentBox newsId={post._id} userId={userId} />
+            {/* <div
+              onClick={handleCommente(post._id)}
               className="badge bg-secondary text-white p-5 cursor-pointer"
             >
               comment {countComment === 0 ? null : countComment}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
