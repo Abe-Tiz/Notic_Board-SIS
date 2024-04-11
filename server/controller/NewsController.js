@@ -50,8 +50,9 @@ const updateComment = async (req, res) => {
     };
     newsItem.message.push(comment);
     await newsItem.save();
-    console.log(newsItem);
-    res.status(200).json(newsItem);
+    const commentNumber = newsItem.message.length;
+    // console.log(newsItem.message.length);
+    res.status(200).json(commentNumber);
   } catch (error) {
     res
       .status(500)

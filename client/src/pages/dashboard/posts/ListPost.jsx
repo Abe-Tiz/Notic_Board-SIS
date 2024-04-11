@@ -3,39 +3,29 @@ import  axios  from 'axios';
 import Card from '../../../components/Card';
 import Swal from 'sweetalert2';
 import useLoggedInUser from '../../../Hooks/useLoggedInUser';
+import useFetchPosts from '../../../Hooks/useFetchPosts';
 
 const ListPost = () => {
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
   const [countLike, setCountLike] = useState(0);
   const [countComment, setCountComment] = useState(0);
-  // const [isPost, setIsPost] = useState(false);
 
-  // const [state, setState] = useState({
-  //   fname: "",
-  //   lname: "",
-  //   image: "",
-  //   isDropdownOpen: false,
-  //   isLoggedin: false,
-  //   collapsed: false,
-  //   role: "",
-  //   id:""
-  // });
-
-   const { user, getLoggedInUser } = useLoggedInUser();
-
+  const { user, getLoggedInUser } = useLoggedInUser();
+  
+  const { posts, error, loading } = useFetchPosts();
   // get posts
-  const fetchPosts = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/news/");
-      const data = response.data;
-      setPosts(data);
-    } catch (error) {
-      console.log("Error", error);
-    }
-  };
+  // const fetchPosts = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:5000/news/");
+  //     const data = response.data;
+  //     setPosts(data);
+  //   } catch (error) {
+  //     console.log("Error", error);
+  //   }
+  // };
 
   useEffect(() => {
-    fetchPosts();
+    // fetchPosts();
     getLoggedInUser();
   }, []);
 
@@ -69,8 +59,6 @@ const ListPost = () => {
             <Card
               handleLiked={() => handleLiked(post._id)}
               countLike={post.like ? post.like.length : 0}
-              // handleCommente={handleCommente}
-              // countComment={countComment}
               post={post}
               userId={user.data._id}
             />

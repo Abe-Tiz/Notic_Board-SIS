@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const CommentBox = ({ newsId, userId }) => {
+
+const CommentBox = ({ newsId, userId, countMessage }) => {
   const [commentContent, setCommentContent] = useState("");
   const [showInput, setShowInput] = useState(false);
 
@@ -13,44 +14,50 @@ const CommentBox = ({ newsId, userId }) => {
     setCommentContent(e.target.value);
   };
 
-const handleCommentSubmit = async () => {
-  console.log(`Submitting comment: ${commentContent}`);
-  console.log(`News ID: ${newsId}, User ID: ${userId}`);
+  const handleCommentSubmit = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/news/comment`, // Make sure the URL is correct
+        {
+          userId: userId,
+          content: commentContent,
+          newsId: newsId,
+        }
+      );
 
-  try {
-    const response = await axios.post(
-      `http://localhost:5000/news/comment`, // Make sure the URL is correct
-      {
-        userId: userId,
-        content: commentContent,
-        newsId: newsId,
-      }
-    );
+      // console.log("Response:", response);
+      setCommentContent("");
+      setShowInput(false);
 
-    console.log("Response:", response);
-    // Handle successful comment submission
-    setCommentContent("");
-    setShowInput(false);
-    console.log("Comment added!", response.data); // Log the response data
-  } catch (error) {
-    console.error("Failed to add comment", error.response || error); // Log the error response if available
-  }
-};
-
+      console.log("Comment added!", response); // Log the response data
+    } catch (error) {
+      console.error("Failed to add comment", error.response || error); // Log the error response if available
+    }
+  };
 
   return (
     <div>
       {showInput ? (
         <>
-          <textarea
-            value={commentContent}
-            onChange={handleCommentChange}
-            placeholder="Write your comment here..."
-          />
-          <button onClick={handleCommentSubmit}>Submit Comment</button>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4  mt-4">
+            <textarea
+              rows={3}
+              cols={24}
+              className="text-purple px-2 rounded-md bg-brown-400 overflow-hidden"
+              value={commentContent}
+              onChange={handleCommentChange}
+              placeholder="Write your comment here..."
+            />
+            <button onClick={handleCommentSubmit}>post</button>
+          </div>
         </>
       ) : (
-        <button onClick={handleAddCommentClick}>Add Comment</button>
+        <button
+          className=" text-green-600  rounded-md p-3  mt-4 font-sans  hover:shadow-md  "
+          onClick={handleAddCommentClick}
+        >
+          <span> Comment {countMessage ? countMessage : null}</span>
+        </button>
       )}
     </div>
   );
