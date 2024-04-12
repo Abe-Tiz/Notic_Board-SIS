@@ -47,7 +47,7 @@ const Admin = () => {
         }));
 
         if (data.data === "token expired") {
-          localStorage.clear();
+           localStorage.removeItem("admin");
           navigate("/login");
         }
       });

@@ -25,14 +25,16 @@ const Login = () => {
      
       const data = response.data;
       console.log(data.user);
-      if (data.user.role === "coordinator") {
+      if (data.user.role === "admin") {
         localStorage.setItem("admin", data.token);
         localStorage.setItem("loggedIn", true);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
         Swal.fire(response.data.message);
         navigate("/admin");
       } else {
          localStorage.setItem("users", data.token);
-         localStorage.setItem("loggedIn", true);
+        localStorage.setItem("loggedIn", true);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
          Swal.fire(response.data.message);
          navigate("/list-news");
       }

@@ -22,7 +22,7 @@ const useFetchPosts = () => {
     fetchPosts();
   }, []);
 
-  return { posts, error, loading };
+  return { posts, error, loading, setPosts };
 };
 
 export default useFetchPosts;

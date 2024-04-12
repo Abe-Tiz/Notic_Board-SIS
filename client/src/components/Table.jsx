@@ -11,7 +11,7 @@ const Table = ({
   searchTerm,
   handleDelete,
 }) => {
-  console.log("datas:", datas);
+  // console.log("datas:", datas);
   return (
     <>
       <div className="m-10 relative overflow-x-auto shadow-md sm:rounded-lg">

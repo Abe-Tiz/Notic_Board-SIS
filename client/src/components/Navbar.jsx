@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import useLoggedInUser from '../Hooks/useLoggedInUser';
 
 const Navbar = () => {
-  const { user, getLoggedInUser } = useLoggedInUser();
+  const { user,isPost,isLoggedIn, getLoggedInUser } = useLoggedInUser();
   useEffect(() => {
     getLoggedInUser();
-  },[])
+  }, [])
+  // console.log("ispost:", user.data);
   const navList = (
     <>
       <li>
@@ -67,7 +68,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 bg-purple">{navList}</ul>
         </div>
         <div className="navbar-end ">
-          <LinkButton user={user} />
+          <LinkButton isLoggedIn={isLoggedIn} user={user} />
         </div>
       </div>
     </>

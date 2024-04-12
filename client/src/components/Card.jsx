@@ -11,7 +11,7 @@ const Card = ({
   post,
 }) => {
 
-  // console.log(`posted news: ${post.content}`)
+  // console.log(`posted news: ${userId}: post Id: ${post._id}`)
   return (
     <>
       <div key={key} className="card bg-black text-white shadow-xl">
@@ -39,7 +39,7 @@ const Card = ({
             </div>
 
             <CommentBox
-              countMessage={post.message.length}
+              countMessage={post.message ? post.message.length : 0 }
               newsId={post._id}
               userId={userId}
             />

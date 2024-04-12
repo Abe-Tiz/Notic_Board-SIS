@@ -11,6 +11,8 @@ import Request from "../pages/Request/Request";
 import Display from "../components/Display";
 import CreatePost from "../pages/dashboard/posts/CreatePost";
 import ListPost from "../pages/dashboard/posts/ListPost";
+import PrivateRoute from "../privateRoute/PrivateRoute";
+
  
 
 const router = createBrowserRouter([
@@ -44,7 +46,11 @@ const router = createBrowserRouter([
       },
       {
         path: "list-news",
-        element: <ListPost />,
+        element: 
+          <PrivateRoute>
+            <ListPost />
+          </PrivateRoute>
+        
       },
     ],
   },

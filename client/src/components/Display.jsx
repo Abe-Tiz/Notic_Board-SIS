@@ -5,45 +5,55 @@ import Table from './Table';
 import LoadingCircle from './LoadingCircle';
 import Swal  from 'sweetalert2';
 import  axios  from 'axios';
+import useLoggedInUser from '../Hooks/useLoggedInUser';
 
 const Display = () => {
-    const [datas, setDatas] = useState([]);
-    const [loading, setLoading] = useState(false);
+  const [datas, setDatas] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { searchTerm, handleChange, data, error } = useSearch("user");
-      
-  const fetchUser = async () => {
-        try {
-          const response = await axios.get("http://localhost:5000/user");
-          const userdata = response.data;
-        
-          if (userdata && userdata.length > 0) {
-            // console.log(userdata);
-            setLoading(true);
-            setDatas(userdata);
-          } else {
-            Swal.fire({
-              position: "top",
-              icon: "warning",
-              title: "Array is Empty",
-              showConfirmButton: false,
-              timer: 5000,
-            });
-          }
-        } catch (error) {
+  const { user, setUser, getLoggedInUser } = useLoggedInUser();
+  
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/user");
+        const userdata = response.data;
+
+        if (userdata && userdata.length > 0) {
+          const notLoggedInUsers = userdata.filter(
+            (u) => u._id !== user.data._id
+          );
+          // console.log("not loggedin:",notLoggedInUsers);
+          setLoading(true);
+          setDatas(notLoggedInUsers);
+        } else {
           Swal.fire({
             position: "top",
-            icon: "error",
-            title: "error Ocurred",
+            icon: "warning",
+            title: "Array is Empty",
             showConfirmButton: false,
             timer: 5000,
           });
         }
-  };
+      } catch (error) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: error.message,
+          showConfirmButton: false,
+          timer: 5000,
+        });
+      }
+    };
+
+
+    
   
   // handle the  users 
     useEffect(() => {
       fetchUser();
+      getLoggedInUser();
     }, []);
+  // console.log("user : ",user.data._id)
   
   const handleDelete = async (id) => {
     Swal.fire({

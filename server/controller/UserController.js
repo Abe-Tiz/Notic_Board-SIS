@@ -77,7 +77,7 @@ const login = async (req, res) => {
           .status(200)
           .json({ message: "Logged In Succssfully!", token: token, user });
       } else {
-        console.log("User not verified");
+        // console.log("User not verified");
         res.json({ message: "Not verified" });
       }
     } else {
@@ -110,9 +110,9 @@ const getloggedInUser = async (req, res) => {
       }
       return res;
     });
-    console.log(user);
+    // console.log(user);
     if (user === "token expired") {
-      return res.send({ status: "error", data: "token expired" });
+      return res.send({ data: "expired" });
     }
 
     const useremail = user.email;

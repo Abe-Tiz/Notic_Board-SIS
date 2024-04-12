@@ -10,13 +10,14 @@ const ListPost = () => {
   const [countLike, setCountLike] = useState(0);
   const [countComment, setCountComment] = useState(0);
 
-  const { user, getLoggedInUser } = useLoggedInUser('ad');
-  const { posts, error, loading } = useFetchPosts();
+  const { user, getLoggedInUser } = useLoggedInUser();
+  const { posts, error, loading, setPosts } = useFetchPosts();
   
+  // console.log("user",user.data._id)
 
   useEffect(() => {
     getLoggedInUser();
-  }, []);
+  }, [getLoggedInUser]);
 
   // handle liked
   const handleLiked = async (postId) => {
@@ -32,14 +33,11 @@ const ListPost = () => {
         );
       }
     } catch (error) {
-      console.error("Error updating likes", error.data);
+      console.error("Error updating likes", error);
       // Swal.fire(error.data);
     }
   };
 
- 
-
-  // console.log("posts:", posts);
   return (
     <>
       <div className="flex flex-wrap -mx-1">
