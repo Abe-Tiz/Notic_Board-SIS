@@ -1,19 +1,19 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-const useLoggedInUser = () => {
+const useLoggedInUser = (type) => {
   const [user, setUser] = useState(null);
   const [isPost, setIsPost] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Default to true assuming user is logged in
 
   const getLoggedInUser = useCallback(async () => {
     try {
-      const userRole = localStorage.getItem("admin");
-      const isAdmin = userRole === "admin";
-      const token = isAdmin
-        ? localStorage.getItem("admin")
-        : localStorage.getItem("users");
-
+      let token = null;
+      if (type === "admin") {
+        token = localStorage.getItem("admin");
+      } else {
+         token = localStorage.getItem("users");
+      }
       const response = await axios.post(
         "http://localhost:5000/user/loggedin-user",
         {

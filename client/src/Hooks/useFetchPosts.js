@@ -8,15 +8,14 @@ const useFetchPosts = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      setLoading(true);
+      // setLoading(true);
       try {
         const response = await axios.get("http://localhost:5000/news/");
         setPosts(response.data);
+        setLoading(true)
       } catch (error) {
         setError(error);
-      } finally {
-        setLoading(false);
-      }
+      }  
     };
 
     fetchPosts();

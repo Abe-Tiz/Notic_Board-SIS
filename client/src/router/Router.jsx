@@ -12,6 +12,7 @@ import Display from "../components/Display";
 import CreatePost from "../pages/dashboard/posts/CreatePost";
 import ListPost from "../pages/dashboard/posts/ListPost";
 import PrivateRoute from "../privateRoute/PrivateRoute";
+import DisplayPost from "../pages/dashboard/posts/DisplayPost";
 
  
 
@@ -46,11 +47,11 @@ const router = createBrowserRouter([
       },
       {
         path: "list-news",
-        element: 
+        element: (
           <PrivateRoute>
             <ListPost />
           </PrivateRoute>
-        
+        ),
       },
     ],
   },
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "post-news",
         element: <CreatePost />,
+      },
+      {
+        path: "list-news",
+        element: <DisplayPost />,
       },
     ],
   },

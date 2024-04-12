@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { RiEdit2Line, RiDeleteBin2Line } from "react-icons/ri";
 // import useSearch from "../useHooks/useSearch";
 
-const TableBody = ({
+const TableBodyPost = ({
   datas,
   data,
   handleActivate,
@@ -12,14 +12,14 @@ const TableBody = ({
 }) => {
   const renderData = searchTerm ? data : datas;
   // console.log("search term", searchTerm);
-    // console.log("donor", datas);
+  // console.log("donor", datas);
 
   return (
     <tbody>
       {renderData.map((res) => (
         <tr
           key={res._id}
-          className="bg-base-200 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          className=" bg-base-200 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
           <th
             scope="row"
@@ -35,28 +35,13 @@ const TableBody = ({
                   <img src={res.image} />
                 </div>
               </div>
-              <div className="text-base font-semibold">{res.fname}</div>
+              <div className="text-base font-semibold">{res.title}</div>
             </div>
           </th>
           <td className="px-6 py-4 text-base font-semibold text-gray-900">
-            {res.lname}
+            {res.subTitle}
           </td>
-          <td className="px-6 py-4">{res.role}</td>
-          <td className="px-6 py-4">{res.email}</td>
-          <td className="px-6 py-4">
-            {res.verified ? (
-              <p className="hover:bg-base-200 text-blue-700 px-4 py-2 rounded font-bold">
-                Active
-              </p>
-            ) : (
-              <button
-                onClick={() => handleActivate(res._id)}
-                className="bg-purple hover:bg-pink text-white px-4 py-2 rounded"
-              >
-                Pending
-              </button>
-            )}
-          </td>
+          <td className="px-6 py-4">{res.content}</td>
           <td className="flex px-6 py-4">
             <Link
               to={`/admin/edit/${res._id}`}
@@ -77,4 +62,4 @@ const TableBody = ({
   );
 };
 
-export default TableBody;
+export default TableBodyPost;

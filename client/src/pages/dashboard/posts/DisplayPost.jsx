@@ -1,59 +1,53 @@
-import React, { useEffect, useState } from 'react'
-import SearchComponent from './SearchComponent';
-import useSearch from './../Hooks/useSearch';
-import Table from './Table';
-import LoadingCircle from './LoadingCircle';
-import Swal  from 'sweetalert2';
-import  axios  from 'axios';
-// import useLoggedInUser from '../Hooks/useLoggedInUser';
+import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import axios from "axios";
+import useFetchPosts from "../../../Hooks/useFetchPosts";
+import SearchComponent from "../../../components/SearchComponent";
+import useSearch from "../../../Hooks/useSearch";
+import LoadingCircle from "../../../components/LoadingCircle";
+import TablePost from "./TablePost";
 
-const Display = () => {
+const DisplayPost = () => {
   const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState(false);
+//   const [loading, setLoading] = useState(false);
   const { searchTerm, handleChange, data, error } = useSearch("user");
- 
-  
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/user");
-        const userdata = response.data;
+    const { posts, loading, setPosts } = useFetchPosts();
+  const fetchPost = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/news");
+      const userdata = response.data;
 
-        if (userdata && userdata.length > 0) {
-          const notLoggedInUsers = userdata.filter(
-            (u) => u.role !== 'admin'
-          );
-          // console.log("not loggedin:",notLoggedInUsers);
-          setLoading(true);
-          setDatas(notLoggedInUsers);
-        } else {
-          Swal.fire({
-            position: "top",
-            icon: "warning",
-            title: "Array is Empty",
-            showConfirmButton: false,
-            timer: 5000,
-          });
-        }
-      } catch (error) {
+      if (userdata && userdata.length > 0) {
+        // const notLoggedInUsers = userdata.filter((u) => u.role !== "admin");
+        // console.log("not loggedin:",notLoggedInUsers);
+        setLoading(true);
+        setDatas(userdata);
+      } else {
         Swal.fire({
           position: "top",
-          icon: "error",
-          title: error.message,
+          icon: "warning",
+          title: "Array is Empty",
           showConfirmButton: false,
           timer: 5000,
         });
       }
-    };
+    } catch (error) {
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: error.message,
+        showConfirmButton: false,
+        timer: 5000,
+      });
+    }
+  };
 
+  // handle the  users
+//   useEffect(() => {
+//     fetchPosts();
+//   }, []);
+  // console.log("posts : ",loading)
 
-    
-  
-  // handle the  users 
-    useEffect(() => {
-      fetchUser();
-    }, []);
-  // console.log("user : ",user.data._id)
-  
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -86,7 +80,6 @@ const Display = () => {
     });
   };
 
-  
   return (
     <>
       <div className="w-full mt-5 flex justify-end ">
@@ -96,8 +89,8 @@ const Display = () => {
 
       {/* donor table */}
       {loading ? (
-        <Table
-          datas={datas}
+        <TablePost
+          datas={posts}
           // handleActivate={handleActivate}
           handleDelete={handleDelete}
           data={data}
@@ -110,4 +103,4 @@ const Display = () => {
   );
 };
 
-export default Display
+export default DisplayPost;
