@@ -74,6 +74,18 @@ const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role,image }) =>
                 className="text-2xl"
               />
             </Link>
+            <Link
+              className="text-white p-2 mt-2 hover:bg-gray-800 rounded"
+              to="/admin/activate"
+              data-tooltip-id="post-list"
+              data-tooltip-content="Post List"
+            >
+              <DynamicIcon
+                library="md"
+                iconName="MdOutlineNewspaper"
+                className="text-2xl"
+              />
+            </Link>
           </div>
         ) : (
           <>
@@ -153,6 +165,17 @@ const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role,image }) =>
                     />
                   }
                   path="/admin/list-news"
+                />
+                <LinkSid
+                  title="Activate Account"
+                  icon={
+                    <DynamicIcon
+                      library="md"
+                      iconName="MdOutlineNewspaper"
+                      className="text-2xl"
+                    />
+                  }
+                  path="/admin/activate"
                 />
               </div>
             </div>

@@ -4,7 +4,7 @@ import axios from "axios";
 const useFetchPosts = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -12,10 +12,11 @@ const useFetchPosts = () => {
       try {
         const response = await axios.get("http://localhost:5000/news/");
         setPosts(response.data);
-        setLoading(true)
+        setLoading(false)
       } catch (error) {
         setError(error);
-      }  
+        setLoading(false);
+      }
     };
 
     fetchPosts();
@@ -25,3 +26,6 @@ const useFetchPosts = () => {
 };
 
 export default useFetchPosts;
+
+
+

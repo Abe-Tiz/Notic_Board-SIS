@@ -1,7 +1,8 @@
 const bcrypt = require("bcrypt");
 const User = require("../model/User");
 const jwt = require("jsonwebtoken");
-
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 // register user
 const getAllUser = async (req, res) => {
   try {
@@ -16,33 +17,80 @@ const getAllUser = async (req, res) => {
 const createUser = async (req, res) => {
   const user = req.body;
   const query = { email: user.email };
-  console.log(user);
   try {
     const existingUser = await User.findOne(query);
     if (existingUser) {
       return res.status(302).json({ message: "user already exist" });
     }
-
-    // change isCordinator value to true if user is cordinator
     if (user.role === "coordinator") {
       user.isCordinator = true;
     }
-
     // Encrypt the user's password
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
     user.password = hashedPassword;
-
-    // Check if image is provided
-    // if (!user.image) {
-    //   return res.status(400).json({ message: "Image is required" });
-    // }
-
+    user.verificationToken = crypto.randomBytes(20).toString("hex");
     const result = await User.create(user);
     result.save();
+    sendverificationEmail(user.email, user.verificationToken);
+    console.log(result);
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+// 
+const sendverificationEmail = async (email, verificationToken) => {
+  //! create nodemailer transporter
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "abebetizazu157@gmail.com",
+      pass: "gezm fqmn asjl bqxj",
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  //! compose the email message
+  const mailOption = {
+    from: "abebetizazu157@gmail.com",
+    to: email,
+    subject: "Email verification",
+    text: `please click the following link to verify your email http://127.0.0.1:5000/user/verify/${verificationToken}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOption);
+  } catch (error) {
+    console.log("error sending email", error);
+  }
+};
+
+
+const getVerification = async (req, res) => {
+  try {
+    const token = req.params.tokenId;
+
+    const user = User.findOne({ verificationToken: token });
+
+    user.then((user) => {
+      if (!user) {
+        return res.status(404).json({ message: "Invalid token" });
+      }
+
+      user.verified = true;
+      user.verificationToken = undefined;
+      console.log(user);
+      User.create(user);
+      // result.save();
+      res.status(200).json({ message: "Email Verified Successfully" });
+    });
+  } catch (error) {
+    console.log("error getting token.", error);
+    res.status(500).json({ message: "Email verification failed" });
   }
 };
 
@@ -81,7 +129,7 @@ const login = async (req, res) => {
         res.json({ message: "Not verified" });
       }
     } else {
-      console.log("Password is not matched");
+      // console.log("Password is not matched");
       user.failedLoginAttempts += 1;
       await user.save();
       console.log(user.failedLoginAttempts);
@@ -97,7 +145,7 @@ const login = async (req, res) => {
     }
   } catch (error) {
     console.error("Error in loginUser:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
@@ -169,6 +217,35 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const activateUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    // If the user is already active, return a message
+    if (user.isActive) {
+      return res.status(200).json({ message: "User is already active." });
+    }
+
+    // Activate the user
+    user.isActive = true;
+    user.failedLoginAttempts = 0;
+    await user.save();
+
+    // Return a success message
+    console.log(user);
+    res.status(200).json({ message: "User account activated successfully." });
+  } catch (error) {
+    console.error("Error in activateUser:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   createUser,
   getAllUser,
@@ -176,4 +253,6 @@ module.exports = {
   getloggedInUser,
   getUserByName,
   deleteUser,
+  getVerification,
+  activateUser,
 };

@@ -89,6 +89,8 @@ const DisplayPost = () => {
 
       {/* donor table */}
       {loading ? (
+        <LoadingCircle />
+      ) : (
         <TablePost
           datas={posts}
           // handleActivate={handleActivate}
@@ -96,8 +98,6 @@ const DisplayPost = () => {
           data={data}
           searchTerm={searchTerm}
         />
-      ) : (
-        <LoadingCircle />
       )}
     </>
   );

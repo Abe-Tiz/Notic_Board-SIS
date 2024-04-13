@@ -24,7 +24,7 @@ const Login = () => {
       );
      
       const data = response.data;
-      console.log(data.user);
+      // console.log(data.user);
       if (data.user.role === "admin") {
         localStorage.setItem("admin", data.token);
         localStorage.setItem("loggedIn", true);
@@ -40,11 +40,11 @@ const Login = () => {
       }
       
     } catch (error) {
-      console.error("Error occured:", error.response.data.message);
+      // console.log("Error occured:", error.response.data.message);
       Swal.fire({
         position: "top",
-        icon: "error",
-        title: "some thing went wrong",
+        icon: "warning",
+        title: error.response.data.message,
         showConfirmButton: true,
         timer: 5000,
       });

@@ -69,7 +69,7 @@ const Signup = () => {
         "http://localhost:5000/user/register",
         inputData
       );
-      // console.log("response data:",response.data);
+      console.log("response data:",response.data);
 
       Swal.fire({
         position: "top",

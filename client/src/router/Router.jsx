@@ -13,6 +13,7 @@ import CreatePost from "../pages/dashboard/posts/CreatePost";
 import ListPost from "../pages/dashboard/posts/ListPost";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import DisplayPost from "../pages/dashboard/posts/DisplayPost";
+import ActivateAccount from "../pages/dashboard/manage user/ActivateAccount";
 
  
 
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "list-news",
         element: <DisplayPost />,
+      },
+      {
+        path: "activate",
+        element: <ActivateAccount />,
       },
     ],
   },

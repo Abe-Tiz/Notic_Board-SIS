@@ -13,11 +13,15 @@ const postNews = async (req, res) => {
 
 // get posted news
 const getNews = async (req, res) => {
-   
   try {
-    const data = await News.find({});
+    const data = await News.find()
+      .populate("like", "fname lname image")
+      .exec();
     res.status(200).json(data);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 const updateLike =async (req, res) => {
@@ -59,8 +63,6 @@ const updateComment = async (req, res) => {
       .json(error.message );
   }
 };
-
-
 
 module.exports = {
   postNews,
