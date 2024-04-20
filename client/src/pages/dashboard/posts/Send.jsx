@@ -26,19 +26,17 @@ const Send = () => {
   // Handler for when a role is selected from the dropdown
   const handleChange = (event) => {
     setSelected(event.target.value);
-    // console.log(event.target.value);
   };
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submit action
     try {
-      // Make a POST request to your backend
-      const response = await axios.post("http://localhost:5000/send", {
+      const response = await axios.post("http://localhost:5000/single/send", {
         id,
         role: selected,
       });
-      console.log(response.data); // Handle the response as needed
+      // console.log(response.data);  
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -47,34 +45,36 @@ const Send = () => {
   return (
     <>
       <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label
-          className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          htmlFor="user-role"
-        >
-          TO:
-        </label>
-        <select
-          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="user-role"
-          name="userRole"
-          value={selected}
-          onChange={handleChange}
-        >
-          <option value="">-- Select a role --</option>
-          {userRoles.map((role, index) => (
-            <option key={index} value={role}>
-              {role}
-            </option>
-          ))}
-        </select>
+        <form onSubmit={handleSubmit}>
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="user-role"
+          >
+            TO:
+          </label>
+          <select
+            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="user-role"
+            name="userRole"
+            value={selected}
+            onChange={handleChange}
+          >
+            <option value="">-- Select a role --</option>
+            {userRoles.map((role, index) => (
+              <option key={index} value={role}>
+                {role}
+              </option>
+            ))}
+          </select>
 
-        <button
-          type="submit"
-          className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleSubmit}
-        >
-          Send Message
-        </button>
+          <button
+            type="submit"
+            className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            // onClick={handleSubmit}
+          >
+            Send Message
+          </button>
+        </form>
       </div>
     </>
   );

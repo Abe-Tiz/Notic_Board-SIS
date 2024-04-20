@@ -5,14 +5,14 @@ import TableBodyPost from "./TableBodyPost";
 import TableHeaderPost from "./TableHeaderPost";
 
 const TablePost = ({
-  datas,
+  // datas,
   handleActivate,
-  userRoles,
+  // userRoles,
   data,
   searchTerm,
   handleDelete,
 }) => {
-  // console.log("datas:", datas);
+  // console.log("data:", datas);
   return (
     <>
       <div className="m-10 relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -27,12 +27,12 @@ const TablePost = ({
 
           {/* table body */}
           <TableBodyPost
-            datas={datas}
+            // datas={datas}
             handleActivate={handleActivate}
             handleDelete={handleDelete}
             data={data}
             searchTerm={searchTerm}
-            userRoles={userRoles}
+            // userRoles={userRoles}
           />
         </table>
       </div>

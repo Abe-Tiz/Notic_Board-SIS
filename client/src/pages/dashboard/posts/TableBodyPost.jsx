@@ -2,68 +2,74 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { RiEdit2Line, RiDeleteBin2Line } from "react-icons/ri";
 import LinkSid from "../../../components/LinkSid";
+import useFetchPosts from "../../../Hooks/useFetchPosts";
 // import useSearch from "../useHooks/useSearch";
+import LoadingCircle from '../../../components/LoadingCircle';
 
 const TableBodyPost = ({
-  datas,
+  // datas,
   data,
   handleActivate,
   handleDelete,
   searchTerm,
 }) => {
-  const renderData = searchTerm ? data : datas;
+
+   const { posts, loading, setPosts } = useFetchPosts();
+  const renderData = searchTerm ? data : posts;
   // console.log("search term", searchTerm);
-  // console.log("donor", datas);
+  console.log("donor", posts);
 
   return (
-    <tbody>
-      {renderData.map((res) => (
-        <tr
-          key={res._id}
-          className=" bg-base-200 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-        >
-          <th
-            scope="row"
-            className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-          >
-            <div className="ps-3 flex justify-center items-center">
-              <div
-                role="button"
-                className="btn btn-ghost btn-circle avatar mr-5"
+    <>
+      {loading ? (
+        <LoadingCircle />
+      ) : (
+        <tbody>
+          {renderData.map((res) => (
+            <tr
+              key={res._id}
+              className="bg-base-200 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+            >
+              <th
+                scope="row"
+                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
               >
-                <div className="w-10 rounded-full">
-                  {/* <img alt="Tailwind CSS Navbar component" src={state.image} /> */}
-                  <img src={res.image} />
+                <div className="ps-3 flex justify-center items-center">
+                  <div
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar mr-5"
+                  >
+                    <div className="w-10 rounded-full">
+                      <img src={res.image} alt={res.title} />
+                    </div>
+                  </div>
+                  <div className="text-base font-semibold">{res.title}</div>
                 </div>
-              </div>
-              <div className="text-base font-semibold">{res.title}</div>
-            </div>
-          </th>
-          <td className="px-6 py-4 text-base font-semibold text-gray-900">
-            {res.subTitle}
-          </td>
-          <td className="px-6 py-4">{res.content}</td>
-          <td className="flex px-6 py-4">
-            <Link
-              to={`/admin/edit/${res._id}`}
-              className="flex items-center bg-transparent border-2 p-1  mr-5 font-medium text-white hover:text-purple dark:text-blue-500   hover:border-purple"
-            >
-              <RiEdit2Line size={20} color="#000" className="mr-2" />
-            </Link>
-            <button
-              onClick={() => handleDelete(res._id)}
-              className="flex items-center bg-transparent border-2 p-1 font-medium text-white hover:text-green-700 dark:text-blue-500   hover:border-green-700"
-            >
-              <RiDeleteBin2Line size={20} color="#000" className="mr-2" />
-            </button>
-            <LinkSid
-              path={`/admin/send/${res._id}`}
-              title="Send"
-             />
-          </td>
-        </tr>
-      ))}
-    </tbody>
+              </th>
+              <td className="px-6 py-4 text-base font-semibold text-gray-900">
+                {res.subTitle}
+              </td>
+              <td className="px-6 py-4">{res.content}</td>
+              <td className="flex px-6 py-4">
+                <Link
+                  to={`/admin/edit/${res._id}`}
+                  className="flex items-center bg-transparent border-2 p-1 mr-5 font-medium text-white hover:text-purple dark:text-blue-500 hover:border-purple"
+                >
+                  <RiEdit2Line size={20} color="#000" className="mr-2" />
+                </Link>
+                <button
+                  onClick={() => handleDelete(res._id)}
+                  className="flex items-center bg-transparent border-2 p-1 font-medium text-white hover:text-green-700 dark:text-blue-500 hover:border-green-700"
+                >
+                  <RiDeleteBin2Line size={20} color="#000" className="mr-2" />
+                </button>
+                <LinkSid path={`/admin/send/${res._id}`} title="Send" customeClass="w-auto p-2" />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      )}
+    </>
   );
 };
 

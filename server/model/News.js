@@ -29,7 +29,7 @@ const newSchema = new mongoose.Schema({
   like: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
     },
   ],
 });

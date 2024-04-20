@@ -8,11 +8,10 @@ const useFetchPosts = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      // setLoading(true);
       try {
         const response = await axios.get("http://localhost:5000/news/");
         setPosts(response.data);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         setError(error);
         setLoading(false);
@@ -26,6 +25,3 @@ const useFetchPosts = () => {
 };
 
 export default useFetchPosts;
-
-
-

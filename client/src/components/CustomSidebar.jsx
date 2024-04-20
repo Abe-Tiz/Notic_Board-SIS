@@ -177,6 +177,17 @@ const CustomSidebar = ({ collapsed, fname, lname, handleLogout, role,image }) =>
                   }
                   path="/admin/activate"
                 />
+                <LinkSid
+                  title="List Single"
+                  icon={
+                    <DynamicIcon
+                      library="md"
+                      iconName="MdOutlineNewspaper"
+                      className="text-2xl"
+                    />
+                  }
+                  path="/admin/view-single"
+                />
               </div>
             </div>
           </>

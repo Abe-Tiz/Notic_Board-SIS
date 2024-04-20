@@ -34,6 +34,13 @@ const getNews = async (req, res) => {
   try {
     const data = await News.find()
       .populate("like", "fname lname image")
+      .populate({
+        path: "message",
+        populate: {
+          path: "user",
+          select:"fname lname email role"
+        },
+      })
       .exec();
     res.status(200).json(data);
   } catch (error) {

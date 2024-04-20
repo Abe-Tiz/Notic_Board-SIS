@@ -11,7 +11,7 @@ const DisplayPost = () => {
   const [datas, setDatas] = useState([]);
 
   const { searchTerm, handleChange, data, error } = useSearch("user");
-  const { posts, loading, setPosts } = useFetchPosts();
+ 
   
   const fetchPost = async () => {
     try {
@@ -57,9 +57,9 @@ const DisplayPost = () => {
    };
 
   // handle the  users
-  useEffect(() => {
-    getUsers();
-  }, []);
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
   // console.log("user roles : ", userRoles);
 
   const handleDelete = async (id) => {
@@ -102,17 +102,13 @@ const DisplayPost = () => {
       </div>
 
       {/* donor table */}
-      {loading ? (
-        <LoadingCircle />
-      ) : (
         <TablePost
-          datas={posts}
+          // datas={posts}
           // userRoles={userRoles}
           handleDelete={handleDelete}
           data={data}
           searchTerm={searchTerm}
         />
-      )}
     </>
   );
 };

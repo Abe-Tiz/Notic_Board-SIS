@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
-const News = require("./News");
-const User = require("./User");
 
 const singleMessageSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-  },
+  }
+  ,
   content: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "News",
