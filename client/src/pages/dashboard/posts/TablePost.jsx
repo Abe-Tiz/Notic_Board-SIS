@@ -7,7 +7,7 @@ import TableHeaderPost from "./TableHeaderPost";
 const TablePost = ({
   datas,
   handleActivate,
-  onOpen,
+  userRoles,
   data,
   searchTerm,
   handleDelete,
@@ -32,6 +32,7 @@ const TablePost = ({
             handleDelete={handleDelete}
             data={data}
             searchTerm={searchTerm}
+            userRoles={userRoles}
           />
         </table>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { RiEdit2Line, RiDeleteBin2Line } from "react-icons/ri";
+import LinkSid from "../../../components/LinkSid";
 // import useSearch from "../useHooks/useSearch";
 
 const TableBodyPost = ({
@@ -55,6 +56,10 @@ const TableBodyPost = ({
             >
               <RiDeleteBin2Line size={20} color="#000" className="mr-2" />
             </button>
+            <LinkSid
+              path={`/admin/send/${res._id}`}
+              title="Send"
+             />
           </td>
         </tr>
       ))}

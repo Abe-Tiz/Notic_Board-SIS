@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const newSchema = new mongoose.Schema({
   title: String,
@@ -8,6 +8,10 @@ const newSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
   message: [
     {
@@ -30,6 +34,6 @@ const newSchema = new mongoose.Schema({
   ],
 });
 
-const News = mongoose.model('News', newSchema);
+const News = mongoose.model("News", newSchema);
 
 module.exports = News;

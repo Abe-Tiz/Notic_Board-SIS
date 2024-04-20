@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage --verbose",
     "start": "nodemon index.js"
   },
   "keywords": [],
@@ -20,8 +20,11 @@
     "express": "^4.19.2",
     "express-async-handler": "^1.2.0",
     "express-formidable": "^1.2.0",
+    "http": "^0.0.1-security",
+    "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.4",
-    "nodemailer": "^6.9.13"
+    "nodemailer": "^6.9.13",
+    "socket.io": "^4.7.5"
   }
 }

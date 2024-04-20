@@ -1,13 +1,31 @@
 const News = require("../model/News");
+const Notification = require("../model/Notofication");
 
 // create news 
 const postNews = async (req, res) => {
     const news = req.body;
     try {
-        const data = await News.create(news);
+      const data = await News.create(news);
+      console.log(data)
+      // Create a new notification
+    // const newNotification = await Notification.create({
+    //   user: /* user ID */,
+    //   text: 'New news post created!',
+       
+    // });
+
+    // Increment the newNotify field for the user
+    // await Notification.updateOne(
+    //   { user: /* user ID */ },
+    //   { $inc: { newNotify: 1 } }
+    // );
         res.status(200).json(data);
     } catch (error) {
-        
+        res
+          .status(500)
+          .json({ message: "Error creating news item", error: error.message });
+        // Log the error for server-side debugging
+        console.error("Error creating news item:", error);
     }
 }
 
@@ -23,6 +41,10 @@ const getNews = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+// const sendNews = async (req, res) => { 
+
+// }
 
 const updateLike =async (req, res) => {
   const { postId, userId } = req.body;

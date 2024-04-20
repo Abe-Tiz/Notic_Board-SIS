@@ -8,7 +8,7 @@ const DB = () => {
       mongoose
         .connect(uri)
         .then(() => {
-          console.log("Mongodb connected successfully");
+          console.log("🔗 Mongodb connected successfully");
         })
         .catch((err) => {
           console.log("error connecting to mongodb", err);

@@ -14,6 +14,7 @@ import ListPost from "../pages/dashboard/posts/ListPost";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import DisplayPost from "../pages/dashboard/posts/DisplayPost";
 import ActivateAccount from "../pages/dashboard/manage user/ActivateAccount";
+import Send from './../pages/dashboard/posts/Send';
 
  
 
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       {
         path: "activate",
         element: <ActivateAccount />,
+      },
+      {
+        path: "send/:id",
+        element: <Send />,
       },
     ],
   },

@@ -3,6 +3,12 @@ const User = require("../model/User");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const Notification = require("../model/Notofication");
+const { getIo } = require("../socket");
+
+// Use getIo() to get the initialized io instance
+const io = getIo();
+
 // register user
 const getAllUser = async (req, res) => {
   try {
@@ -33,8 +39,21 @@ const createUser = async (req, res) => {
     const result = await User.create(user);
     result.save();
     sendverificationEmail(user.email, user.verificationToken);
-    console.log(result);
+    // console.log(result);
     res.status(200).json(result);
+
+    // add notification for login
+    const notification = await Notification.create({
+      user: user._id,
+      text: `New User Added at ${new Date()}`,
+      read: false,
+    });
+    notification.save();
+
+    // emit notification
+    io.emit("new-user-notification", notification);
+    console.log("Notification emitted for new user:", notification);
+    
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -69,7 +88,6 @@ const sendverificationEmail = async (email, verificationToken) => {
   }
 };
 
-
 const getVerification = async (req, res) => {
   try {
     const token = req.params.tokenId;
@@ -97,9 +115,8 @@ const getVerification = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const user = await User.findOne({ email });
-
+  // console.log(user);
     if (!user) {
       console.log("User is not found.");
       return res.status(404).json({ message: "User is not found." });
@@ -111,7 +128,6 @@ const login = async (req, res) => {
           "Your account is deactivated. Please contact Admin to activate.",
       });
     }
-
     const passwordMatch = await bcrypt.compare(password, user.password);
     console.log(user);
     if (passwordMatch) {
@@ -121,9 +137,11 @@ const login = async (req, res) => {
         });
         user.failedLoginAttempts = 0;
         await user.save();
+      
         res
           .status(200)
-          .json({ message: "Logged In Succssfully!", token: token, user });
+          .json({ message: "Logged In Succssfully!", token: token, user });      
+          
       } else {
         // console.log("User not verified");
         res.json({ message: "Not verified" });

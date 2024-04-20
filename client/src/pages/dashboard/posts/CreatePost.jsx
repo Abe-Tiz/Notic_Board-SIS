@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Button from "../../../components/Button";
@@ -10,7 +10,26 @@ const CreatePost = () => {
     subTitle: "",
     content: "",
     image: "",
+    userRole:"",
   });
+
+   const [userRoles, setUserRoles] = useState([]); 
+
+   const getUsers = async () => {
+     try {
+       const response = await axios.get("http://localhost:5000/user/");
+       const roles = response.data.map((user) => user.role);
+       // Set the userRoles state with unique roles
+       setUserRoles([...new Set(roles)]);
+     } catch (error) {
+       console.error("Error fetching users:", error);
+     }
+   };
+  
+  // fetch users
+ useEffect(() => {
+   getUsers();
+ }, []);
 
   // Upload image
   const uploadImage = async (pics) => {
@@ -56,8 +75,6 @@ const CreatePost = () => {
       return;
     }
   };
-
-    //    console.log("input data:",inputData);
     
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -146,7 +163,7 @@ const CreatePost = () => {
             {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
           </div>
           {/* image */}
-          <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               class="block uppercase tracking-wide text-white text-xs font-bold mb-2"
               for="grid-file"
@@ -162,6 +179,28 @@ const CreatePost = () => {
               autoComplete="off"
             />
           </div>
+          {/* <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="user-role"
+            >
+              TO:
+            </label>
+            <select
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="user-role"
+              name="userRole"
+              value={inputData.userRole}
+              onChange={handleChange}
+            >
+              <option value="">-- Select a role --</option>
+              {userRoles.map((role, index) => (
+                <option key={index} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+          </div> */}
         </div>
 
         {/* content */}

@@ -9,9 +9,10 @@ import TablePost from "./TablePost";
 
 const DisplayPost = () => {
   const [datas, setDatas] = useState([]);
-//   const [loading, setLoading] = useState(false);
+
   const { searchTerm, handleChange, data, error } = useSearch("user");
-    const { posts, loading, setPosts } = useFetchPosts();
+  const { posts, loading, setPosts } = useFetchPosts();
+  
   const fetchPost = async () => {
     try {
       const response = await axios.get("http://localhost:5000/news");
@@ -42,11 +43,24 @@ const DisplayPost = () => {
     }
   };
 
+  
+
+   const getUsers = async () => {
+     try {
+       const response = await axios.get("http://localhost:5000/user/");
+       const roles = response.data.map((user) => user);
+       // Set the userRoles state with unique roles
+       setUserRoles([...new Set(roles)]);
+     } catch (error) {
+       console.error("Error fetching users:", error);
+     }
+   };
+
   // handle the  users
-//   useEffect(() => {
-//     fetchPosts();
-//   }, []);
-  // console.log("posts : ",loading)
+  useEffect(() => {
+    getUsers();
+  }, []);
+  // console.log("user roles : ", userRoles);
 
   const handleDelete = async (id) => {
     Swal.fire({
@@ -93,7 +107,7 @@ const DisplayPost = () => {
       ) : (
         <TablePost
           datas={posts}
-          // handleActivate={handleActivate}
+          // userRoles={userRoles}
           handleDelete={handleDelete}
           data={data}
           searchTerm={searchTerm}

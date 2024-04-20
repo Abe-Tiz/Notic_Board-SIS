@@ -14,7 +14,6 @@ const Signup = () => {
   });
 
   const [image, setImage] = useState('');
-  
 
   // Upload image
   const uploadImage = async (pics) => {
