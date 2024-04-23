@@ -74,7 +74,7 @@ const DisplayPost = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/user/delete/${id}`);
+          await axios.delete(`http://localhost:5000/news/delete/${id}`);
           setDatas(datas.filter((data) => data._id !== id));
           Swal.fire({
             title: "Deleted!",

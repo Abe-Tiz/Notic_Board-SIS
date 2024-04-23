@@ -6,7 +6,7 @@ const LinkSid = ({ path, title, icon, customeClass }) => {
     <div>
       <Link
         to={path}
-        className={` ${customeClass} bg-sky-800 flex gap-2 w-52 text-white m-0 hover:bg-gray-800 rounded`}
+        className={` ${customeClass} flex gap-2 w-52 text-white m-0 hover:bg-gray-800 rounded p-2 `}
         // onClick={handleReport}
         data-tooltip-id="my-dashboard"
         data-tooltip-content={title}

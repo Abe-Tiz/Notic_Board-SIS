@@ -17,7 +17,7 @@ const TableBodyPost = ({
    const { posts, loading, setPosts } = useFetchPosts();
   const renderData = searchTerm ? data : posts;
   // console.log("search term", searchTerm);
-  console.log("donor", posts);
+  // console.log("posts:", posts);
 
   return (
     <>
@@ -63,7 +63,11 @@ const TableBodyPost = ({
                 >
                   <RiDeleteBin2Line size={20} color="#000" className="mr-2" />
                 </button>
-                <LinkSid path={`/admin/send/${res._id}`} title="Send" customeClass="w-auto p-2" />
+                <LinkSid
+                  path={`/admin/send/${res._id}`}
+                  title="Allocate"
+                  customeClass="w-auto p-2"
+                />
               </td>
             </tr>
           ))}

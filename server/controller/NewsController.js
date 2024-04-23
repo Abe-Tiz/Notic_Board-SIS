@@ -38,7 +38,7 @@ const getNews = async (req, res) => {
         path: "message",
         populate: {
           path: "user",
-          select:"fname lname email role"
+          select:"fname lname email role image"
         },
       })
       .exec();
@@ -49,16 +49,12 @@ const getNews = async (req, res) => {
   }
 };
 
-// const sendNews = async (req, res) => { 
-
-// }
-
 const updateLike =async (req, res) => {
   const { postId, userId } = req.body;
   try {
     const newsItem = await News.findById(postId);
       const likeIndex = newsItem.like.indexOf(userId);
-      console.log(likeIndex); 
+      // console.log(likeIndex); 
     if (likeIndex !== -1) {
       newsItem.like.splice(likeIndex, 1);
       await newsItem.save();
@@ -93,9 +89,29 @@ const updateComment = async (req, res) => {
   }
 };
 
+const deletePost = async (req, res) => { 
+  const { id } = req.params;
+  try { 
+    const found = await News.findById(id);
+    if (!found) {
+      res.status(404).json("Post Not Found!!!")
+    }
+    const result = await News.deleteOne(
+      { _id : id },
+      { new : true }
+    );
+    // console.log(post);
+    res.status(200).json({message:"Deleted successfully"});
+  } catch (error) {
+    // console.log(error.message)
+    res.status(500).json(error);
+   }
+}
+
 module.exports = {
   postNews,
   getNews,
   updateLike,
   updateComment,
+  deletePost,
 };

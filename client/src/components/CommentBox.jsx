@@ -8,7 +8,9 @@ const CommentBox = ({ newsId, userId, countMessage }) => {
   const [showInput, setShowInput] = useState(false);
   const { comments, setComments } = useState([]);
 
-  const { posts } = useFetchPosts()
+  const { posts } = useFetchPosts();
+
+
 
   const handleAddCommentClick = () => {
     setShowInput(true);
@@ -46,6 +48,12 @@ const CommentBox = ({ newsId, userId, countMessage }) => {
       .filter((post) => post._id === newsId)
     .flatMap((post) => post.message);
 
+    const filteredUser = posts
+      .filter((post) => post._id === newsId)
+    .flatMap((post) => post.message.user);
+
+      // console.log("filtered user:", filteredMessages);
+
   return (
     <div>
       {showInput ? (
@@ -54,10 +62,10 @@ const CommentBox = ({ newsId, userId, countMessage }) => {
             <div className="font-serif bg-base-200 rounded-lg shadow-lg shadow-purple-1 w-full">
               {filteredMessages.map((message, index) => (
                 <>
-                  {/* <div key={index}>{message.user}</div> */}
                   <div key={index} className="p-1 border   m-1">
                       {message.content}
                   </div>
+                
                 </>
               ))}
             </div>

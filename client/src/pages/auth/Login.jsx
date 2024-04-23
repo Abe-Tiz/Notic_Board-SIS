@@ -98,6 +98,11 @@ const Login = () => {
             </div>
 
             <Button title="Login" />
+            <label className="label">
+              <a href="/signup" className="label-text-alt link link-hover">
+                Don't have an account ? Sign Up
+              </a>
+            </label>
           </div>
         </form>
       </div>

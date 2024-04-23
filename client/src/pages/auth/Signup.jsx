@@ -233,6 +233,11 @@ const Signup = () => {
         </div>
 
         <Button title="Submit" />
+        <label className="label">
+          <a href="/login" className="label-text-alt link link-hover">
+             Have you an account ? Sign In
+          </a>
+        </label>
       </form>
     </div>
   );
