@@ -10,7 +10,7 @@ const User = require("../model/User");
 
       // Find users based on the role
       const users = await User.find({ role: role });
-
+      
       // Ensure content exists
       const contentExists = await News.findById(id);
       if (!contentExists || !users) {

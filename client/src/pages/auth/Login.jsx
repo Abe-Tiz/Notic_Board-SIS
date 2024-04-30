@@ -32,7 +32,6 @@ const Login = () => {
       } else {
         localStorage.setItem("users", data.token); // Changed from "users" to "user"
         localStorage.setItem("loggedIn", true);
-        // axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
         Swal.fire(data.message);
         navigate("/list-news");
       }

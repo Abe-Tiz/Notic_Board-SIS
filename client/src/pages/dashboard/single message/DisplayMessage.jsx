@@ -19,8 +19,6 @@ const DisplayMessage = () => {
 
       fetchMessages();
     }, []);
-  
-  // console.log("messages:", messages);
 
     return (
       <>

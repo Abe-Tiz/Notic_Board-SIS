@@ -53,20 +53,24 @@ const TableBodyPost = ({
               <td className="flex px-6 py-4">
                 <Link
                   to={`/admin/edit/${res._id}`}
-                  className="flex items-center bg-transparent border-2 p-1 mr-5 font-medium text-white hover:text-purple dark:text-blue-500 hover:border-purple"
+                  className="flex items-center bg-transparent border-0 p-1 mr-5 font-medium text-white "
                 >
                   <RiEdit2Line size={20} color="#000" className="mr-2" />
                 </Link>
                 <button
                   onClick={() => handleDelete(res._id)}
-                  className="flex items-center bg-transparent border-2 p-1 font-medium text-white hover:text-green-700 dark:text-blue-500 hover:border-green-700"
+                  className="flex items-center bg-transparent p-1 font-medium border-0 dark:text-blue-50"
                 >
-                  <RiDeleteBin2Line size={20} color="#000" className="mr-2" />
+                  <RiDeleteBin2Line
+                    size={20}
+                    color="#000"
+                    className="mr-2 text-red-400 text-xl"
+                  />
                 </button>
                 <LinkSid
                   path={`/admin/send/${res._id}`}
                   title="Allocate"
-                  customeClass="w-auto p-2"
+                  customeClass="w-auto p-2 bg-sky-600"
                 />
               </td>
             </tr>
