@@ -56,12 +56,6 @@ const DisplayPost = () => {
      }
    };
 
-  // handle the  users
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
-  // console.log("user roles : ", userRoles);
-
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -103,8 +97,6 @@ const DisplayPost = () => {
 
       {/* donor table */}
         <TablePost
-          // datas={posts}
-          // userRoles={userRoles}
           handleDelete={handleDelete}
           data={data}
           searchTerm={searchTerm}
