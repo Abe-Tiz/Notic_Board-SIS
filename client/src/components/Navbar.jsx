@@ -61,7 +61,7 @@ const Navbar = () => {
             </ul>
           </div>
           <a href="/" className="btn btn-ghost text-xl text-white">
-            daisyUI
+            SIS
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">

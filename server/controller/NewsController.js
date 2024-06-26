@@ -1,33 +1,50 @@
 const News = require("../model/News");
-const Notification = require("../model/Notofication");
+const nodemailer = require("nodemailer");
+const User = require("../model/User");
 
 // create news 
 const postNews = async (req, res) => {
     const news = req.body;
     try {
       const data = await News.create(news);
-      console.log(data)
-      // Create a new notification
-    // const newNotification = await Notification.create({
-    //   user: /* user ID */,
-    //   text: 'New news post created!',
-       
-    // });
-
-    // Increment the newNotify field for the user
-    // await Notification.updateOne(
-    //   { user: /* user ID */ },
-    //   { $inc: { newNotify: 1 } }
-    // );
-        res.status(200).json(data);
+      const users = User.find({});
+      
+        res.status(200).json({post:data, users:users});
     } catch (error) {
         res
           .status(500)
           .json({ message: "Error creating news item", error: error.message });
-        // Log the error for server-side debugging
-        console.error("Error creating news item:", error);
     }
 }
+
+
+const sendverificationEmail = async (email, subtitle) => {
+  //! create nodemailer transporter
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "abebetizazu157@gmail.com",
+      pass: "gezm fqmn asjl bqxj",
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  //! compose the email message
+  const mailOption = {
+    from: "abebetizazu157@gmail.com",
+    to: email,
+    subject: "New Post from head",
+    text: `${subtitle} please see the posts for more information!`,
+  };
+
+  try {
+    await transporter.sendMail(mailOption);
+  } catch (error) {
+    console.error("error sending email", error);
+  }
+};
 
 // get posted news
 const getNews = async (req, res) => {
